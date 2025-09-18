@@ -2,26 +2,24 @@
 #include <vector>
 
 
-void insert_num(std::vector<int> vec) {
-    for (int i = 0; i < vec.size(); i++) {
-        for (int j = 0; j < vec.size() - i - 1; j++) {
-            if (vec[j] > vec[j + 1]) {
-                int temp = vec[j];
-                vec[j] = vec[j + 1];
-                vec[j + 1] = temp;
+void insert_num(std::vector<int>& vec, int num) {
+    if (vec.size() < 5 || num < vec[4]) {
+        for (int i = 0; i < vec.size(); i++) {
+            if (num <= vec[i]) {
+                std::swap(vec[i], num);
             }
         }
+        if (vec.size() < 5) {
+            vec.push_back(num);
+        }
     }
-    vec.resize(5);
-    std::cout << "Num: " << vec[4] << std::endl;
-
 }
 
 
 int main() {
     std::cout << "03_Task" << std::endl;
 
-    std::vector<int> vec;
+    std::vector<int> vec(0);
 
     int num;
 
@@ -32,13 +30,13 @@ int main() {
             std::cout << "Finishing the program";
             return 0;
         } else if (num == -1) {
-            if (vec.size() < 5) {
-                std::cout << "There are not enough numbers entered to display the fifth in ascending order." << std::endl;
+            if (vec.size() > 4) {
+                std::cout << "Num: " << vec[4] << std::endl;
             } else {
-                insert_num(vec);
+                std::cout << "There are not enough numbers entered to display the fifth in ascending order." << std::endl;
             }
         } else {
-            vec.push_back(num);
+            insert_num(vec, num);
         }
     }
 
