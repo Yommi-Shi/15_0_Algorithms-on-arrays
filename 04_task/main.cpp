@@ -20,6 +20,10 @@ void ascending_order(std::vector<int> vec) {
     while (left >= 0) {
         std::cout << vec[left--] << " ";
     }
+
+    while (right < vec.size()) {
+        std::cout << vec[right++] << " ";
+    }
 }
 
 
